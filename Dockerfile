@@ -16,4 +16,12 @@ RUN apt-get install -y vim
 RUN exit
 
 
+RUN docker login -u "araju024" -p "araju@@098" \
+&&  docker build . -t araju024/ubuntuimg_node:098 \
+&&  docker images
+&&  docker push araju024/ubuntuimg_node:098
+
+
+
+
 CMD ["echo","Env Created.."]
