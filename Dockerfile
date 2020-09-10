@@ -13,10 +13,7 @@ RUN node -v \
 
 RUN apt-get install -y vim 
 
-RUN ./hello.js
-
 RUN exit
 
-CMD /bin/echo "Hello Aarju"
 
 CMD ["echo","Env Created.."]
