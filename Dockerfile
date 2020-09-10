@@ -14,8 +14,6 @@ RUN node -v \
 RUN apt-get install -y vim 
 
 RUN exit
-
-
-CMD ["echo","Env Created.."]
-
+ 
+CMD /bin/echo "Hello! Aarju"
 
