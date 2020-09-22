@@ -1,7 +1,5 @@
 pipeline {
   environment {
-    registry = "pipeline {
-  environment {
     registry = "araju024/new_image"
     registryCredential = 'araju@@098'
     dockerImage = ''
@@ -31,6 +29,4 @@ pipeline {
     }
     
   }
-}
-}
 }
