@@ -1,31 +1,36 @@
 pipeline {
-    agent { dockerfile true }
-    stages {
-        stage('Checkout') {
-        steps {
-            checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '6b65c839-454a-4719-9ab7-453a05085ae3', url: 'https://github.com/araju02497/node_try.git']]])
-			}
-        }
-        stage('Build') {
-            steps {
-                echo 'job builded'
-				bat label: '', script: 'docker build -f Dockerfile .'
-            }
-                }
-         stage('Test') {
-            steps {
-                echo 'Job has been test'
-            }
-        }
-        stage('QA Deploy') {
-            steps {
-                echo 'Job has been deployed'
-            }
-        }
-         stage('Prod Deploy') {
-            steps {
-                echo 'Production Deployment done'
-            }
-        }
+  environment {
+    registry = "pipeline {
+  environment {
+    registry = "araju024/new_image"
+    registryCredential = 'araju@@098'
+    dockerImage = ''
+  }
+  agent any
+  stages {
+    stage('Cloning Git') {
+      steps {
+        git 'https://github.com/araju02497/node_try.git'
+      }
     }
+    stage('Building image') {
+      steps{
+        script {
+          dockerImage = docker.build registry + ":$BUILD_NUMBER"
+        }
+      }
+    }
+    stage('Deploy Image') {
+      steps{
+        script {
+          docker.withRegistry( '', registryCredential ) {
+            dockerImage.push()
+          }
+        }
+      }
+    }
+    
+  }
+}
+}
 }
