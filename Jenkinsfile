@@ -1,7 +1,7 @@
 pipeline {
   environment {
     registry = "araju024/new_image"
-    registryCredential = 'araju@@098'
+    registryCredential = 'araju_docker'
     dockerImage = ''
   }
   agent any
