@@ -17,5 +17,5 @@ RUN apt-get install -y vim
 
 RUN exit
  
-CMD /bin/echo "Hello! Aarju"
+CMD /bin/echo "Hello!"
 
