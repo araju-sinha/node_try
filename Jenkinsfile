@@ -8,7 +8,7 @@ pipeline {
   stages {
     stage('Cloning Git') {
       steps {
-        git 'https://github.com/araju02497/node_try.git'
+        git 'https://github.com/OCTO01032020-araju/node_try.git'
       }
     }
     stage('Building image') {
