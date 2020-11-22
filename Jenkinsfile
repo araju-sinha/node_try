@@ -1,6 +1,6 @@
 pipeline {
   environment {
-    registry = "araju024/new_imge:node_image"
+    registry = "araju024/new_imge"
     registryCredential = 'araju_docker'
     dockerImage = ''
   }
