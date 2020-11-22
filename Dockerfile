@@ -13,8 +13,6 @@ RUN apt-get update \
 RUN node -v \
 &&  npm -v
 
-RUN apt-get install -y vim 
-
 RUN exit
  
 CMD /bin/echo "Hello!"
