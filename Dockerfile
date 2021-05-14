@@ -1,19 +1,19 @@
-FROM ubuntu
+FROM node:14
 
-MAINTAINER Aarju Sinha<aarju.sinha024@gmail.com>
+# Create app directory
+WORKDIR /usr/src/app
 
-RUN apt-get update \
+# Install app dependencies
+# A wildcard is used to ensure both package.json AND package-lock.json are copied
+# where available (npm@5+)
+COPY package*.json ./
 
-&&  apt-get install -y nodejs
+RUN npm install
+# If you are building your code for production
+# RUN npm ci --only=production
 
-RUN apt-get update \
+# Bundle app source
+COPY . .
 
-&&  apt-get install -y npm
-
-RUN node -v \
-&&  npm -v
-
-RUN exit
- 
-CMD /bin/echo "Hello!"
-
+EXPOSE 8080
+CMD [ "node", "server.js" ]
