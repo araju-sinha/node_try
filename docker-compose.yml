@@ -1,0 +1,40 @@
+version: "3"
+services:
+        node-app:
+            container_name: node-cont
+            image: login-app:new
+            restart: always
+            build: .
+            ports:
+              - "51005:51005"
+			networks: 
+			  - node-network
+            links:
+              - mongo
+			  - mysql-service
+        mongo:
+              container_name: mongo_new
+              image: mongo
+              volumes:
+                - ./data:/data/db
+              ports:
+                - '27017:27017'
+			networks: 
+			  - node-network				
+        mysql-service:
+                container_name: node-mysql
+                image: mysql:5.7
+                volumes:
+                  - ./dbdata:/var/lib/mysql
+                ports:
+                  - '3306:3306'
+                restart: always
+                environment:
+                  - MYSQL_ROOT_HOST=root
+                  - MYSQL_ROOT_PASSWORD=password
+                  - MYSQL_DATABASE=backend_demo
+			networks: 
+			  - node-network
+networks:
+  node-network:
+    driver: bridge
