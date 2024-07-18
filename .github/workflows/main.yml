@@ -9,8 +9,8 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-      - run: |
-          VERSION=$(date +%s)
-          docker login -u ${{ secrets.HUB_ID }} -p ${{ secrets.HUB_PASS }}
-          docker build . --file Dockerfile --tag ${{ secrets.HUB_ID }}/nodeapp:${VERSION}
-          docker push ${{ secrets.HUB_ID }}/nodeapp:${VERSION}
+      - run: docker build --tag try_node . /test/Dockerfile
+#          VERSION=$(date +%s)
+#          docker login -u ${{ secrets.HUB_ID }} -p ${{ secrets.HUB_PASS }}
+#          docker build . --file Dockerfile --tag ${{ secrets.HUB_ID }}/nodeapp:${VERSION}
+#          docker push ${{ secrets.HUB_ID }}/nodeapp:${VERSION}
